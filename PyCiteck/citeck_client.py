@@ -8,9 +8,9 @@ from httpx import AsyncClient
 class CiteckClient:
     def __init__(
         self,
+        citeck_base_url: str,
         keycloak_client_id: str,
         keycloak_secret: str,
-        citeck_base_url: str,
         keycloak_realm: str = "ecos-app",
         client: AsyncClient | None = None
     ):
