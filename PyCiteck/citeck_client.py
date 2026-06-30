@@ -61,7 +61,7 @@ class CiteckClient:
         self._token_cache["expires_at"] = now + expires_in
         return token
  
-    async def mutate(self, records: Sequence):
+    async def mutate(self, records: Sequence) -> dict:
         url = f"{self.records_base_url}/mutate"
         token = await self._get_bearer_token()
 
@@ -80,7 +80,7 @@ class CiteckClient:
         result = resp.json()
         return result
     
-    async def query(self, query: dict):
+    async def query(self, query: dict) -> dict:
         url = f"{self.records_base_url}/query"
         token = await self._get_bearer_token()
 

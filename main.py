@@ -1,7 +1,7 @@
 # Example usage
 from pprint import pprint
 
-from PyCiteck.citeck_client import CiteckClient
+from PyCiteck import CiteckClient
 
 
 async def main():
