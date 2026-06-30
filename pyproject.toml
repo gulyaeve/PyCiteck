@@ -1,3 +1,7 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "pyciteck"
 version = "0.1.0"
@@ -7,3 +11,6 @@ requires-python = ">=3.14"
 dependencies = [
     "httpx>=0.28.1",
 ]
+
+[project.urls]
+Homepage = "https://github.com/gulyaeve/PyCiteck"
