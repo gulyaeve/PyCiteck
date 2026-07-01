@@ -12,9 +12,9 @@ class CiteckClient:
         keycloak_client_id: str,
         keycloak_secret: str,
         keycloak_realm: str = "ecos-app",
-        client: AsyncClient | None = None
+        http_client: AsyncClient | None = None
     ):
-        self._client = client or AsyncClient()
+        self._client = http_client or AsyncClient()
         self._keycloak_client_id = keycloak_client_id
         self._keycloak_secret = keycloak_secret
         self._citeck_base_url = citeck_base_url
