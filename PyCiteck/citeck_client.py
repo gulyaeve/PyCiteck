@@ -3,6 +3,7 @@ from time import time
 from typing import Sequence
 import anyio
 from httpx import AsyncClient
+from asyncio import sleep
 
 
 class CiteckClient:
@@ -59,6 +60,8 @@ class CiteckClient:
 
         self._token_cache["access_token"] = token
         self._token_cache["expires_at"] = now + expires_in
+
+        await sleep(0.1)
         return token
  
     async def mutate(self, records: Sequence) -> dict:
