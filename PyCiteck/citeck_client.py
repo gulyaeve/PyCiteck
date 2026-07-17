@@ -13,13 +13,15 @@ class CiteckClient:
         keycloak_client_id: str,
         keycloak_secret: str,
         keycloak_realm: str = "ecos-app",
-        http_client: AsyncClient | None = None
+        http_client: AsyncClient | None = None,
+        token_request_delay: float = 0.1,
     ):
         self._client = http_client or AsyncClient()
         self._keycloak_client_id = keycloak_client_id
         self._keycloak_secret = keycloak_secret
         self._citeck_base_url = citeck_base_url
         self._keycloak_realm = keycloak_realm
+        self._token_request_delay = token_request_delay
     
     @property
     def token_url(self):
@@ -61,7 +63,7 @@ class CiteckClient:
         self._token_cache["access_token"] = token
         self._token_cache["expires_at"] = now + expires_in
 
-        await sleep(0.1)
+        await sleep(self._token_request_delay)
         return token
  
     async def mutate(self, records: Sequence) -> dict:
