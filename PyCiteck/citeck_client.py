@@ -116,7 +116,7 @@ class CiteckClient:
         file_name: str,
         file_content_type: str,
     ):
-        token = await self._get_bearer_token
+        token = await self._get_bearer_token()
         headers = {"Authorization": f"Bearer {token}"}
 
         async with await anyio.open_file(path_to_file, "rb") as f:
