@@ -15,6 +15,7 @@ class CiteckClient:
         keycloak_realm: str = "ecos-app",
         http_client: AsyncClient | None = None,
         token_request_delay: float = 0.1,
+        keycloak_token_url: str | None = None,
     ):
         self._client = http_client or AsyncClient()
         self._keycloak_client_id = keycloak_client_id
@@ -22,10 +23,14 @@ class CiteckClient:
         self._citeck_base_url = citeck_base_url
         self._keycloak_realm = keycloak_realm
         self._token_request_delay = token_request_delay
+        self._keycloak_token_url = keycloak_token_url
     
     @property
     def token_url(self):
-        return f"{self._citeck_base_url}/ecos-idp/auth/realms/{self._keycloak_realm}/protocol/openid-connect/token"
+        if self._keycloak_token_url is None:
+            return f"{self._citeck_base_url}/ecos-idp/auth/realms/{self._keycloak_realm}/protocol/openid-connect/token"
+        else:
+            return self._keycloak_token_url
 
     @property
     def records_base_url(self):
